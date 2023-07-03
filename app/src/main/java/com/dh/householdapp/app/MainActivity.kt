@@ -1,4 +1,4 @@
-package com.dh.householdapp
+package com.dh.householdapp.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
