@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -78,8 +77,8 @@ class ExpenseViewModel(
                     it.copy(
                         isAddingExpense = false,
                         description = "",
-                        value = 0.0,
-                        date = LocalDateTime.now()
+                        value = "",
+                        date = ""
                     )
                 }
             }
@@ -116,7 +115,7 @@ class ExpenseViewModel(
                 }
             }
 
-            is ExpenseEvent.SortContacts -> {
+            is ExpenseEvent.SortExpenses -> {
                 _sortType.value = event.sortType
             }
         }
