@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.format.DateTimeFormatter
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -86,7 +87,7 @@ class ExpenseViewModel(
             is ExpenseEvent.SetDate -> {
                 _state.update {
                     it.copy(
-                        date = event.date
+                        date = event.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                     )
                 }
             }

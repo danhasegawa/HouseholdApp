@@ -39,6 +39,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             HouseholdAppTheme {
                 val state by viewModel.state.collectAsState()
+
+
                 ExpenseScreen(state = state, onEvent = viewModel::onEvent)
 
             }

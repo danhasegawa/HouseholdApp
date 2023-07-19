@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -87,7 +88,7 @@ fun ExpenseScreen(
                     Column(
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text(text = "${expense.date} ${expense.description}", fontSize = 20.sp)
+                        Text(text = "${expense.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))} -  ${expense.description}" , fontSize = 20.sp)
                         Text(text = "$ ${expense.value}", fontSize = 20.sp)
 
                     }
