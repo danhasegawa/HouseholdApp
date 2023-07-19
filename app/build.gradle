@@ -30,6 +30,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
@@ -76,6 +77,10 @@ dependencies {
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //datetime library dialog
+    implementation "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.6'
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

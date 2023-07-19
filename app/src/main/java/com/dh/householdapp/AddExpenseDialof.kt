@@ -10,9 +10,19 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.datetime.date.datepicker
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -21,6 +31,19 @@ fun AddExpenseDialog(
     onEvent: (ExpenseEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val pickedDate by remember {
+        mutableStateOf(LocalDate.now())
+    }
+    val formattedDate by remember {
+        derivedStateOf {
+            DateTimeFormatter
+                .ofPattern("dd/MM/yyyy")
+                .format(pickedDate)
+        }
+    }
+    val dateDialogState = rememberMaterialDialogState()
+
     AlertDialog(
         modifier = modifier,
         onDismissRequest = {
@@ -31,15 +54,31 @@ fun AddExpenseDialog(
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                TextField(
-                    value = state.date,
-                    onValueChange = {
-                        onEvent(ExpenseEvent.SetDate(it))
-                    },
-                    placeholder = {
-                        Text(text = "Date")
+
+                Button(onClick = {
+                    dateDialogState.show()
+                }) {
+                    Text(text = "Pick Date")
+                }
+                Text(text = state.date)
+
+                MaterialDialog(
+                    dialogState = dateDialogState,
+                    buttons = {
+                        positiveButton(text = "Ok")
+                        negativeButton(text = "Cancel")
                     }
-                )
+                ) {
+                    datepicker(
+                        initialDate = LocalDate.now(),
+                        title = "Pick a date",
+                        onDateChange = {
+                            onEvent(ExpenseEvent.SetDate(it))
+                        }
+                    )
+
+                }
+
                 TextField(
                     value = state.description,
                     onValueChange = {
