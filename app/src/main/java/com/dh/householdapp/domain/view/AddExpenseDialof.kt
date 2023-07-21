@@ -1,4 +1,4 @@
-package com.dh.householdapp
+package com.dh.householdapp.domain.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -58,7 +58,7 @@ fun AddExpenseDialog(
                 Button(onClick = {
                     dateDialogState.show()
                 }) {
-                    Text(text = "Pick Date")
+                    Text(text = "Date")
                 }
                 Text(text = state.date)
 

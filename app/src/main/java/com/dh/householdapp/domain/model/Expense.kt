@@ -1,4 +1,4 @@
-package com.dh.householdapp
+package com.dh.householdapp.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

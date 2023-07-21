@@ -1,4 +1,4 @@
-package com.dh.householdapp
+package com.dh.householdapp.domain.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dh.householdapp.domain.sort.SortType
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,7 +89,10 @@ fun ExpenseScreen(
                     Column(
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text(text = "${expense.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))} -  ${expense.description}" , fontSize = 20.sp)
+                        Text(
+                            text = "${expense.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))} -  ${expense.description}",
+                            fontSize = 20.sp
+                        )
                         Text(text = "$ ${expense.value}", fontSize = 20.sp)
 
                     }

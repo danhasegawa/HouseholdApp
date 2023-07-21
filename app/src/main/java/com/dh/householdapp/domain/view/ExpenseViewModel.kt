@@ -1,7 +1,10 @@
-package com.dh.householdapp
+package com.dh.householdapp.domain.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dh.householdapp.data.dao.ExpenseDao
+import com.dh.householdapp.domain.model.Expense
+import com.dh.householdapp.domain.sort.SortType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,6 +27,7 @@ class ExpenseViewModel(
             when (sortType) {
                 SortType.DESCRIPTION -> dao.getExpenseByDescription()
                 SortType.VALUE -> dao.getExpenseByValue()
+                SortType.DATE -> dao.getExpenseByDate()
                 SortType.ALL -> dao.getAllExpense()
             }
         }

@@ -9,9 +9,9 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
-import com.dh.householdapp.ExpenseDatabase
-import com.dh.householdapp.ExpenseScreen
-import com.dh.householdapp.ExpenseViewModel
+import com.dh.householdapp.data.repository.ExpenseDatabase
+import com.dh.householdapp.domain.view.ExpenseScreen
+import com.dh.householdapp.domain.view.ExpenseViewModel
 import com.dh.householdapp.ui.theme.HouseholdAppTheme
 
 class MainActivity : ComponentActivity() {

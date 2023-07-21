@@ -1,5 +1,7 @@
-package com.dh.householdapp
+package com.dh.householdapp.domain.view
 
+import com.dh.householdapp.domain.model.Expense
+import com.dh.householdapp.domain.sort.SortType
 import java.time.LocalDate
 
 sealed interface ExpenseEvent {
