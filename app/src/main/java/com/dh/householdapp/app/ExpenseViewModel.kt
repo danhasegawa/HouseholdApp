@@ -1,10 +1,13 @@
-package com.dh.householdapp.domain.view
+package com.dh.householdapp.app
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dh.householdapp.data.dao.ExpenseDao
+import com.dh.householdapp.data.repository.ExpenseRepository
 import com.dh.householdapp.domain.model.Expense
 import com.dh.householdapp.domain.sort.SortType
+import com.dh.householdapp.domain.view.ExpenseEvent
+import com.dh.householdapp.domain.view.ExpenseState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,21 +17,23 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class ExpenseViewModel(
-    private val dao: ExpenseDao
+@HiltViewModel
+class ExpenseViewModel @Inject constructor(
+    private val expenseRepository: ExpenseRepository
 ) : ViewModel() {
 
     private val _sortType = MutableStateFlow(SortType.DESCRIPTION)
     private val _expenses = _sortType
         .flatMapLatest { sortType ->
             when (sortType) {
-                SortType.DESCRIPTION -> dao.getExpenseByDescription()
-                SortType.VALUE -> dao.getExpenseByValue()
-                SortType.DATE -> dao.getExpenseByDate()
-                SortType.ALL -> dao.getAllExpense()
+                SortType.DESCRIPTION -> expenseRepository.getExpenseByDescription()
+                SortType.VALUE -> expenseRepository.getExpenseByValue()
+                SortType.DATE -> expenseRepository.getExpenseByDate()
+                SortType.ALL -> expenseRepository.getAllExpense()
             }
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
@@ -50,7 +55,7 @@ class ExpenseViewModel(
         when (event) {
             is ExpenseEvent.DeleteExpense -> {
                 viewModelScope.launch {
-                    dao.deleteExpense(event.expense)
+                    expenseRepository.deleteExpense(event.expense)
                 }
             }
 
@@ -76,7 +81,7 @@ class ExpenseViewModel(
                     date = date
                 )
                 viewModelScope.launch {
-                    dao.upsertExpense(expense)
+                    expenseRepository.upsertExpense(expense)
                 }
                 _state.update {
                     it.copy(
