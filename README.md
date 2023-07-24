@@ -14,7 +14,7 @@ The application must allow a person to register their income and expenses for th
 - ``Android Studio``
 - ``Android Jetpack``
 - ``Room``
-
+- ``Dagger Hilt``
 
 ## :bulb: Project Features
 
