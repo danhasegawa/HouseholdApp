@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.dh.householdapp.data.dao.ExpenseDao
 import com.dh.householdapp.data.repository.ExpenseDatabase
+import com.dh.householdapp.data.source.ExpenseLocalDataSource
+import com.dh.householdapp.data.source.RoomExpenseDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +28,11 @@ object RoomModule {
     @Provides
     fun provideExpenseDao(expenseDatabase: ExpenseDatabase): ExpenseDao {
         return expenseDatabase.dao
+    }
+
+    @Provides
+    fun provideLocalExpenseDataSource(expenseDao: ExpenseDao): ExpenseLocalDataSource {
+        return RoomExpenseDataSource(expenseDao)
     }
 }
 

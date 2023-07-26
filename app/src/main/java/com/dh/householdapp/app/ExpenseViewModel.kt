@@ -2,7 +2,12 @@ package com.dh.householdapp.app
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dh.householdapp.data.repository.ExpenseRepository
+import com.dh.householdapp.data.usecases.DeleteExpenseUseCase
+import com.dh.householdapp.data.usecases.GetAllExpensesByDateUseCase
+import com.dh.householdapp.data.usecases.GetAllExpensesByDescriptionUseCase
+import com.dh.householdapp.data.usecases.GetAllExpensesByValueUseCase
+import com.dh.householdapp.data.usecases.GetAllExpensesUseCase
+import com.dh.householdapp.data.usecases.UpsertExpenseUseCase
 import com.dh.householdapp.domain.model.Expense
 import com.dh.householdapp.domain.sort.SortType
 import com.dh.householdapp.domain.view.ExpenseEvent
@@ -23,17 +28,22 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class ExpenseViewModel @Inject constructor(
-    private val expenseRepository: ExpenseRepository
+    private val upsertExpenseUseCase: UpsertExpenseUseCase,
+    private val deleteExpenseUseCase: DeleteExpenseUseCase,
+    private val getAllExpensesUseCase: GetAllExpensesUseCase,
+    private val getAllExpensesByDescriptionUseCase: GetAllExpensesByDescriptionUseCase,
+    private val getAllExpensesByValueUseCase: GetAllExpensesByValueUseCase,
+    private val getAllExpensesByDateUseCase: GetAllExpensesByDateUseCase
 ) : ViewModel() {
 
     private val _sortType = MutableStateFlow(SortType.DESCRIPTION)
     private val _expenses = _sortType
         .flatMapLatest { sortType ->
             when (sortType) {
-                SortType.DESCRIPTION -> expenseRepository.getExpenseByDescription()
-                SortType.VALUE -> expenseRepository.getExpenseByValue()
-                SortType.DATE -> expenseRepository.getExpenseByDate()
-                SortType.ALL -> expenseRepository.getAllExpense()
+                SortType.DESCRIPTION -> getAllExpensesByDescriptionUseCase()
+                SortType.VALUE -> getAllExpensesByValueUseCase()
+                SortType.DATE -> getAllExpensesByDateUseCase()
+                SortType.ALL -> getAllExpensesUseCase()
             }
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
@@ -55,7 +65,7 @@ class ExpenseViewModel @Inject constructor(
         when (event) {
             is ExpenseEvent.DeleteExpense -> {
                 viewModelScope.launch {
-                    expenseRepository.deleteExpense(event.expense)
+                    deleteExpenseUseCase(event.expense)
                 }
             }
 
@@ -81,7 +91,7 @@ class ExpenseViewModel @Inject constructor(
                     date = date
                 )
                 viewModelScope.launch {
-                    expenseRepository.upsertExpense(expense)
+                    upsertExpenseUseCase(expense = expense)
                 }
                 _state.update {
                     it.copy(
