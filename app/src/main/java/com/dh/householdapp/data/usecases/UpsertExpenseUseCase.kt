@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class UpsertExpenseUseCase @Inject constructor(private val expenseRepository: ExpenseRepository){
 
-    suspend operator fun invoke(expense: Expense){
+   suspend operator fun invoke(expense: Expense){
         expenseRepository.upsertExpense(expense)
     }
 }

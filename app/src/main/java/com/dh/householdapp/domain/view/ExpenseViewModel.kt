@@ -1,4 +1,4 @@
-package com.dh.householdapp.app
+package com.dh.householdapp.domain.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +10,6 @@ import com.dh.householdapp.data.usecases.GetAllExpensesUseCase
 import com.dh.householdapp.data.usecases.UpsertExpenseUseCase
 import com.dh.householdapp.domain.model.Expense
 import com.dh.householdapp.domain.sort.SortType
-import com.dh.householdapp.domain.view.ExpenseEvent
-import com.dh.householdapp.domain.view.ExpenseState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

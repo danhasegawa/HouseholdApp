@@ -1,4 +1,4 @@
-package com.dh.householdapp.domain.view
+package com.dh.householdapp.navigation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -27,6 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dh.householdapp.domain.sort.SortType
+import com.dh.householdapp.domain.view.ExpenseEvent
+import com.dh.householdapp.domain.view.ExpenseState
 import com.dh.householdapp.domain.view.dialog.AddExpenseDialog
 import java.time.format.DateTimeFormatter
 
