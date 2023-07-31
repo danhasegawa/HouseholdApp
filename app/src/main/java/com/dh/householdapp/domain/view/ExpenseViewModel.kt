@@ -25,13 +25,14 @@ import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
-class ExpenseViewModel @Inject constructor(
+class ExpenseViewModel @Inject constructor (
     private val upsertExpenseUseCase: UpsertExpenseUseCase,
     private val deleteExpenseUseCase: DeleteExpenseUseCase,
     private val getAllExpensesUseCase: GetAllExpensesUseCase,
     private val getAllExpensesByDescriptionUseCase: GetAllExpensesByDescriptionUseCase,
     private val getAllExpensesByValueUseCase: GetAllExpensesByValueUseCase,
     private val getAllExpensesByDateUseCase: GetAllExpensesByDateUseCase
+
 ) : ViewModel() {
 
     private val _sortType = MutableStateFlow(SortType.DESCRIPTION)

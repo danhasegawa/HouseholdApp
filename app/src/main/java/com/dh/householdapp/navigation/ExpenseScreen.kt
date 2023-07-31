@@ -21,27 +21,31 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dh.householdapp.domain.sort.SortType
 import com.dh.householdapp.domain.view.ExpenseEvent
-import com.dh.householdapp.domain.view.ExpenseState
+import com.dh.householdapp.domain.view.ExpenseViewModel
 import com.dh.householdapp.domain.view.dialog.AddExpenseDialog
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExpenseScreen(
-    state: ExpenseState,
-    onEvent: (ExpenseEvent) -> Unit
-) {
+fun ExpenseScreen() {
+
+    val viewModel: ExpenseViewModel = viewModel()
+    val state by viewModel.state.collectAsState()
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                onEvent(ExpenseEvent.ShowDialog)
+                viewModel.onEvent(ExpenseEvent.ShowDialog)
             }) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -51,7 +55,7 @@ fun ExpenseScreen(
         },
     ) { padding ->
         if (state.isAddingExpense) {
-            AddExpenseDialog(state = state, onEvent = onEvent)
+            AddExpenseDialog(state = state, onEvent = viewModel::onEvent)
         }
         LazyColumn(
             contentPadding = padding,
@@ -68,14 +72,14 @@ fun ExpenseScreen(
                     SortType.values().forEach { sortType ->
                         Row(
                             modifier = Modifier.clickable {
-                                onEvent(ExpenseEvent.SortExpenses(sortType))
+                                viewModel.onEvent(ExpenseEvent.SortExpenses(sortType))
                             },
                             verticalAlignment = CenterVertically
                         ) {
                             RadioButton(
                                 selected = state.sortType == sortType,
                                 onClick = {
-                                    onEvent(ExpenseEvent.SortExpenses(sortType))
+                                   viewModel.onEvent(ExpenseEvent.SortExpenses(sortType))
                                 }
                             )
                             Text(text = sortType.name)
@@ -100,7 +104,7 @@ fun ExpenseScreen(
 
                     }
                     IconButton(onClick = {
-                        onEvent(ExpenseEvent.DeleteExpense(expense))
+                        viewModel.onEvent(ExpenseEvent.DeleteExpense(expense))
                     }) {
                         Icon(
                             imageVector = Icons.Default.Delete,
