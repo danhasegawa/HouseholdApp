@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
-class ExpenseViewModel @Inject constructor (
+class ExpenseViewModel @Inject constructor(
     private val upsertExpenseUseCase: UpsertExpenseUseCase,
     private val deleteExpenseUseCase: DeleteExpenseUseCase,
     private val getAllExpensesUseCase: GetAllExpensesUseCase,

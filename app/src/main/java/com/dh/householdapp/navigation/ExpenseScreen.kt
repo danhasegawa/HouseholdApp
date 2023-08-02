@@ -28,7 +28,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.dh.householdapp.domain.sort.SortType
 import com.dh.householdapp.domain.view.ExpenseEvent
 import com.dh.householdapp.domain.view.ExpenseViewModel
@@ -37,9 +37,8 @@ import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExpenseScreen() {
+fun ExpenseScreen(viewModel: ExpenseViewModel = hiltViewModel()) {
 
-    val viewModel: ExpenseViewModel = viewModel()
     val state by viewModel.state.collectAsState()
 
     Scaffold(
@@ -79,7 +78,7 @@ fun ExpenseScreen() {
                             RadioButton(
                                 selected = state.sortType == sortType,
                                 onClick = {
-                                   viewModel.onEvent(ExpenseEvent.SortExpenses(sortType))
+                                    viewModel.onEvent(ExpenseEvent.SortExpenses(sortType))
                                 }
                             )
                             Text(text = sortType.name)

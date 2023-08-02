@@ -9,9 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    //private val viewModel: ExpenseViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -21,12 +18,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-//                val state by viewModel.state.collectAsState()
-//
-//
-//                ExpenseScreen(state = state, onEvent = viewModel::onEvent)
-
-
-
-
 

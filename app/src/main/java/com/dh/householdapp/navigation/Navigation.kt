@@ -15,11 +15,7 @@ fun Navigation() {
             MainScreen(navController)
         }
         composable(route = Screen.ExpenseScreen.route) {
-//            val viewModel: ExpenseViewModel = viewModel()
-//            val state by viewModel.state.collectAsState()
-
             ExpenseScreen()
-
         }
         composable(route = Screen.IncomeScreen.route) {
             IncomeScreen()
