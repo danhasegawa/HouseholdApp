@@ -3,7 +3,7 @@ package com.dh.householdapp.data.di
 import android.content.Context
 import androidx.room.Room
 import com.dh.householdapp.data.dao.ExpenseDao
-import com.dh.householdapp.data.repository.ExpenseDatabase
+import com.dh.householdapp.data.database.ExpenseDatabase
 import com.dh.householdapp.data.source.ExpenseLocalDataSource
 import com.dh.householdapp.data.source.RoomExpenseDataSource
 import dagger.Module

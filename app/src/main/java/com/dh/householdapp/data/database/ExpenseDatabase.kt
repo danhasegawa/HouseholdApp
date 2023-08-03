@@ -1,4 +1,4 @@
-package com.dh.householdapp.data.repository
+package com.dh.householdapp.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
