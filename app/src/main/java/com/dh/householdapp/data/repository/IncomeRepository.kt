@@ -2,8 +2,9 @@ package com.dh.householdapp.data.repository
 
 import com.dh.householdapp.data.source.income.IncomeLocalDataSource
 import com.dh.householdapp.domain.model.Income
+import javax.inject.Inject
 
-class IncomeRepository(private val localDataSource: IncomeLocalDataSource) {
+class IncomeRepository @Inject constructor(private val localDataSource: IncomeLocalDataSource) {
 
     suspend fun upsertIncome(income: Income) {
         localDataSource.upsertIncome(income)
@@ -13,7 +14,7 @@ class IncomeRepository(private val localDataSource: IncomeLocalDataSource) {
         localDataSource.deleteIncome(income)
     }
 
-    fun getAllIncome() = localDataSource.getAllIncomes()
+    fun getAllIncome() = localDataSource.getAllIncome()
     fun getIncomeByDescription() = localDataSource.getIncomeByDescription()
     fun getIncomeByValue() = localDataSource.getIncomeByValue()
     fun getIncomeByDate() = localDataSource.getIncomeByDate()

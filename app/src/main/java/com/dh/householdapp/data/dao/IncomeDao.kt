@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface IncomeDao {
+
     @Upsert
     suspend fun upsertIncome(income: Income)
 
@@ -16,7 +17,7 @@ interface IncomeDao {
     suspend fun deleteIncome(income: Income)
 
     @Query("SELECT * FROM income")
-    fun getAllIncomes(): Flow<List<Income>>
+    fun getAllIncome(): Flow<List<Income>>
 
     @Query("SELECT * FROM income ORDER BY description ASC")
     fun getIncomeByDescription(): Flow<List<Income>>

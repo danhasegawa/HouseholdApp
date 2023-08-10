@@ -6,12 +6,14 @@ import java.time.LocalDate
 
 sealed interface IncomeEvent {
 
-    object SaveExpense : IncomeEvent
+    object SaveIncome : IncomeEvent
     data class SetDescription(val description: String) : IncomeEvent
     data class SetValue(val value: String) : IncomeEvent
     data class SetDate(val date: LocalDate) : IncomeEvent
-    data class DeleteIncomes(val income: Income) : IncomeEvent
-    data class SortIncomes(val sortType: SortType) : IncomeEvent
+    data class DeleteIncome(val income: Income) : IncomeEvent
+    data class SortIncome(val sortType: SortType) : IncomeEvent
     object ShowDialog : IncomeEvent
     object HideDialog : IncomeEvent
+
+
 }

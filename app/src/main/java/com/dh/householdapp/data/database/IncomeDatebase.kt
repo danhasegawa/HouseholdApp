@@ -6,7 +6,8 @@ import com.dh.householdapp.data.dao.IncomeDao
 import com.dh.householdapp.domain.model.Income
 
 @Database(entities = [Income::class], version = 1)
-abstract class IncomeDatabase : RoomDatabase() {
 
-    abstract val daoIncome: IncomeDao
+abstract class IncomeDatebase : RoomDatabase() {
+
+    abstract val incomeDao: IncomeDao
 }

@@ -4,8 +4,7 @@ import com.dh.householdapp.data.dao.IncomeDao
 import com.dh.householdapp.domain.model.Income
 import kotlinx.coroutines.flow.Flow
 
-abstract class RoomIncomeDataSource(private val incomeDao: IncomeDao) : IncomeLocalDataSource {
-
+class RoomIncomeDataSource(private val incomeDao: IncomeDao) : IncomeLocalDataSource {
     override suspend fun upsertIncome(income: Income) {
         return incomeDao.upsertIncome(income)
     }
@@ -14,8 +13,8 @@ abstract class RoomIncomeDataSource(private val incomeDao: IncomeDao) : IncomeLo
         return incomeDao.deleteIncome(income)
     }
 
-    override fun getAllIncomes(): Flow<List<Income>> {
-        return incomeDao.getAllIncomes()
+    override fun getAllIncome(): Flow<List<Income>> {
+        return incomeDao.getAllIncome()
     }
 
     override fun getIncomeByDescription(): Flow<List<Income>> {
