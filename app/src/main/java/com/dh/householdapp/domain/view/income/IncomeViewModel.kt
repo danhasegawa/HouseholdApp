@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+@Suppress("UNCHECKED_CAST")
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class IncomeViewModel @Inject constructor(
@@ -37,10 +38,10 @@ class IncomeViewModel @Inject constructor(
     private val _incomes = _sortType
         .flatMapLatest { sortType ->
             when (sortType) {
+                SortType.ALL -> getAllIncomeUseCase()
                 SortType.DESCRIPTION -> getAllIncomeByDescriptionUseCase()
                 SortType.VALUE -> getAllIncomeByValueUseCase()
                 SortType.DATE -> getAllIncomeByDateUseCase()
-                SortType.ALL -> getAllIncomeUseCase()
             }
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
@@ -53,7 +54,7 @@ class IncomeViewModel @Inject constructor(
         _incomes
     ) { state, sortType, incomes ->
         state.copy(
-            incomes = incomes,
+            incomes = incomes as List<Income>,
             sortType = sortType
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), IncomeState())
@@ -134,3 +135,4 @@ class IncomeViewModel @Inject constructor(
     }
 
 }
+

@@ -13,35 +13,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dh.householdapp.domain.view.ExpenseEvent
-import com.dh.householdapp.domain.view.ExpenseState
+import com.dh.householdapp.domain.view.income.IncomeEvent
+import com.dh.householdapp.domain.view.income.IncomeState
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddExpenseDialog(
-    state: ExpenseState,
-    onEvent: (ExpenseEvent) -> Unit,
+fun AddIncomeDialog(
+    state: IncomeState,
+    onEvent: (IncomeEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
-     val dateDialogState = rememberMaterialDialogState()
+    val dateDialogState = rememberMaterialDialogState()
 
     AlertDialog(
         modifier = modifier,
         onDismissRequest = {
-            onEvent(ExpenseEvent.HideDialog)
+            onEvent(IncomeEvent.HideDialog)
         },
-        title = { Text(text = "Add Expense") },
+        title = { Text(text = "Add Income") },
         text = {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-
                 Button(onClick = {
                     dateDialogState.show()
                 }) {
@@ -60,16 +58,15 @@ fun AddExpenseDialog(
                         initialDate = LocalDate.now(),
                         title = "Pick a date",
                         onDateChange = {
-                            onEvent(ExpenseEvent.SetDate(it))
+                            onEvent(IncomeEvent.SetDate(it))
                         }
                     )
 
                 }
-
                 TextField(
                     value = state.description,
                     onValueChange = {
-                        onEvent(ExpenseEvent.SetDescription(it))
+                        onEvent(IncomeEvent.SetDescription(it))
                     },
                     placeholder = {
                         Text(text = "Description")
@@ -78,13 +75,14 @@ fun AddExpenseDialog(
                 TextField(
                     value = state.value,
                     onValueChange = {
-                        onEvent(ExpenseEvent.SetValue(it))
+                        onEvent(IncomeEvent.SetValue(it))
                     },
                     placeholder = {
                         Text(text = "Value")
                     }
                 )
             }
+
         },
         confirmButton = {
             Box(
@@ -92,14 +90,11 @@ fun AddExpenseDialog(
                 contentAlignment = Alignment.CenterEnd
             ) {
                 Button(onClick = {
-                    onEvent(ExpenseEvent.SaveExpense)
+                    onEvent(IncomeEvent.SaveIncome)
                 }) {
                     Text(text = "Save")
-
                 }
-
             }
         }
     )
 }
-

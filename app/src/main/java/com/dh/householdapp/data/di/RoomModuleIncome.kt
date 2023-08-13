@@ -1,5 +1,6 @@
 package com.dh.householdapp.data.di
 
+
 import android.content.Context
 import androidx.room.Room
 import com.dh.householdapp.data.dao.IncomeDao
@@ -35,3 +36,4 @@ object RoomModuleIncome {
         return RoomIncomeDataSource(incomeDao)
     }
 }
+
