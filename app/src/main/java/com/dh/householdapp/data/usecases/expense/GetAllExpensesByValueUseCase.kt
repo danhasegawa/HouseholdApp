@@ -1,4 +1,4 @@
-package com.dh.householdapp.data.usecases
+package com.dh.householdapp.data.usecases.expense
 
 import com.dh.householdapp.data.repository.ExpenseRepository
 import com.dh.householdapp.domain.model.Expense

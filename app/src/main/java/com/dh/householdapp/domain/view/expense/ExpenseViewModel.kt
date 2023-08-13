@@ -1,13 +1,13 @@
-package com.dh.householdapp.domain.view
+package com.dh.householdapp.domain.view.expense
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dh.householdapp.data.usecases.DeleteExpenseUseCase
-import com.dh.householdapp.data.usecases.GetAllExpensesByDateUseCase
-import com.dh.householdapp.data.usecases.GetAllExpensesByDescriptionUseCase
-import com.dh.householdapp.data.usecases.GetAllExpensesByValueUseCase
-import com.dh.householdapp.data.usecases.GetAllExpensesUseCase
-import com.dh.householdapp.data.usecases.UpsertExpenseUseCase
+import com.dh.householdapp.data.usecases.expense.DeleteExpenseUseCase
+import com.dh.householdapp.data.usecases.expense.GetAllExpensesByDateUseCase
+import com.dh.householdapp.data.usecases.expense.GetAllExpensesByDescriptionUseCase
+import com.dh.householdapp.data.usecases.expense.GetAllExpensesByValueUseCase
+import com.dh.householdapp.data.usecases.expense.GetAllExpensesUseCase
+import com.dh.householdapp.data.usecases.expense.UpsertExpenseUseCase
 import com.dh.householdapp.domain.model.Expense
 import com.dh.householdapp.domain.sort.SortType
 import dagger.hilt.android.lifecycle.HiltViewModel

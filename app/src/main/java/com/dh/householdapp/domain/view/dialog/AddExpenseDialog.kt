@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dh.householdapp.domain.view.ExpenseEvent
-import com.dh.householdapp.domain.view.ExpenseState
+import com.dh.householdapp.domain.view.expense.ExpenseEvent
+import com.dh.householdapp.domain.view.expense.ExpenseState
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState

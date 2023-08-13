@@ -2,7 +2,7 @@ package com.dh.householdapp.domain.view.income
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dh.householdapp.data.usecases.GetAllExpensesByDateUseCase
+import com.dh.householdapp.data.usecases.expense.GetAllExpensesByDateUseCase
 import com.dh.householdapp.data.usecases.income.DeleteIncomeUseCase
 import com.dh.householdapp.data.usecases.income.GetAllIncomeByDescriptionUseCase
 import com.dh.householdapp.data.usecases.income.GetAllIncomeByValueUseCase

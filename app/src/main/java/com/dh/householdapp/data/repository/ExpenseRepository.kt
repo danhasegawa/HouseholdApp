@@ -1,6 +1,6 @@
 package com.dh.householdapp.data.repository
 
-import com.dh.householdapp.data.source.ExpenseLocalDataSource
+import com.dh.householdapp.data.source.expense.ExpenseLocalDataSource
 import com.dh.householdapp.domain.model.Expense
 import javax.inject.Inject
 

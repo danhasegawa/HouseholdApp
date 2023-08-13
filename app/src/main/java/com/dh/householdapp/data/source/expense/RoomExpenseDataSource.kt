@@ -1,4 +1,4 @@
-package com.dh.householdapp.data.source
+package com.dh.householdapp.data.source.expense
 
 import com.dh.householdapp.data.dao.ExpenseDao
 import com.dh.householdapp.domain.model.Expense

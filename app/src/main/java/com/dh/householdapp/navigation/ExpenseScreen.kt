@@ -23,16 +23,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dh.householdapp.domain.sort.SortType
-import com.dh.householdapp.domain.view.ExpenseEvent
-import com.dh.householdapp.domain.view.ExpenseViewModel
 import com.dh.householdapp.domain.view.dialog.AddExpenseDialog
+import com.dh.householdapp.domain.view.expense.ExpenseEvent
+import com.dh.householdapp.domain.view.expense.ExpenseViewModel
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,7 +65,7 @@ fun ExpenseScreen(viewModel: ExpenseViewModel = hiltViewModel()) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .horizontalScroll(rememberScrollState()),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = CenterVertically
                 ) {
                     SortType.values().forEach { sortType ->
                         Row(

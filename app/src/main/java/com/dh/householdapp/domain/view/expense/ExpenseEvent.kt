@@ -1,4 +1,4 @@
-package com.dh.householdapp.domain.view
+package com.dh.householdapp.domain.view.expense
 
 import com.dh.householdapp.domain.model.Expense
 import com.dh.householdapp.domain.sort.SortType
