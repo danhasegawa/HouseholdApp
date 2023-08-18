@@ -2,8 +2,8 @@ package com.dh.householdapp.domain.view.income
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dh.householdapp.data.usecases.expense.GetAllExpensesByDateUseCase
 import com.dh.householdapp.data.usecases.income.DeleteIncomeUseCase
+import com.dh.householdapp.data.usecases.income.GetAllIncomeByDateUseCase
 import com.dh.householdapp.data.usecases.income.GetAllIncomeByDescriptionUseCase
 import com.dh.householdapp.data.usecases.income.GetAllIncomeByValueUseCase
 import com.dh.householdapp.data.usecases.income.GetAllIncomeUseCase
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-@Suppress("UNCHECKED_CAST")
+
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class IncomeViewModel @Inject constructor(
@@ -31,7 +31,7 @@ class IncomeViewModel @Inject constructor(
     private val getAllIncomeUseCase: GetAllIncomeUseCase,
     private val getAllIncomeByDescriptionUseCase: GetAllIncomeByDescriptionUseCase,
     private val getAllIncomeByValueUseCase: GetAllIncomeByValueUseCase,
-    private val getAllIncomeByDateUseCase: GetAllExpensesByDateUseCase
+    private val getAllIncomeByDateUseCase: GetAllIncomeByDateUseCase
 ) : ViewModel() {
 
     private val _sortType = MutableStateFlow(SortType.DESCRIPTION)
@@ -54,7 +54,7 @@ class IncomeViewModel @Inject constructor(
         _incomes
     ) { state, sortType, incomes ->
         state.copy(
-            incomes = incomes as List<Income>,
+            incomes = incomes,
             sortType = sortType
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), IncomeState())

@@ -2,6 +2,7 @@ package com.dh.householdapp.data.repository
 
 import com.dh.householdapp.data.source.income.IncomeLocalDataSource
 import com.dh.householdapp.domain.model.Income
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class IncomeRepository @Inject constructor(private val localDataSource: IncomeLocalDataSource) {
@@ -17,5 +18,5 @@ class IncomeRepository @Inject constructor(private val localDataSource: IncomeLo
     fun getAllIncome() = localDataSource.getAllIncome()
     fun getIncomeByDescription() = localDataSource.getIncomeByDescription()
     fun getIncomeByValue() = localDataSource.getIncomeByValue()
-    fun getIncomeByDate() = localDataSource.getIncomeByDate()
+    fun getIncomeByDate(): Flow<List<Income>> = localDataSource.getIncomeByDate()
 }

@@ -5,9 +5,9 @@ import com.dh.householdapp.domain.model.Income
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetAllIncomeByDate @Inject constructor(private val incomeRepository: IncomeRepository) {
+class GetAllIncomeByDateUseCase @Inject constructor(private val incomeRepository: IncomeRepository) {
 
-    operator fun invoke():Flow<List<Income>>{
+    operator fun invoke(): Flow<List<Income>> {
         return incomeRepository.getIncomeByDate()
     }
 }
